@@ -4,10 +4,12 @@ import AdminPanel from './components/AdminPanel';
 import Home from './components/Home';
 import Login from './components/Login';
 import PrivateRoute from './components/PrivateRoute';
+import NavBar from './components/NavBar';
 
 const App: React.FC = () => {
   return (
     <Router>
+      <NavBar />
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route path="/admin/*" element={
