@@ -9,15 +9,28 @@ import NavBar from './components/NavBar';
 const App: React.FC = () => {
   return (
     <Router>
-      <NavBar />
       <Routes>
         <Route path="/login" element={<Login />} />
-        <Route path="/admin/*" element={
-          <PrivateRoute>
-            <AdminPanel />
-          </PrivateRoute>
-        } />
-        <Route path="/" element={<Home />} />
+        <Route
+          path="/admin/*"
+          element={
+            <PrivateRoute>
+              <AdminPanel />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/*"
+          element={
+            <>
+              <NavBar />
+              <Routes>
+                <Route path="/" element={<Home />} />
+                {/* Add other routes here */}
+              </Routes>
+            </>
+          }
+        />
       </Routes>
     </Router>
   );

@@ -1,68 +1,5 @@
 import React from 'react';
-
-interface CourseData {
-  name: string;
-  url: string;
-  coursetype: string;
-  address: string;
-  city: string;
-  county: string;
-  state: string;
-  zip: string;
-  country: string;
-  phone: string;
-  web: string;
-  twitter: string;
-  facebook: string;
-  instagram: string | null;
-  rangeballs: string;
-  tips: string;
-  season: string;
-  cost: string;
-  proshop: string;
-  tees: string;
-  balls: string;
-  instruction: string;
-  locker: string;
-  par: string;
-  yards: string;
-  rating: string;
-  slope: string;
-  architect: string;
-  caddie: string;
-  banquet: boolean;
-  signaturehole: string;
-  opened: string;
-  greens: string;
-  fairways: string;
-  waterhazards: boolean;
-  sandbunkers: string;
-  holes: string;
-  yardagemarkers: string;
-  acceptteetimes: boolean;
-  earliestcallteetime: string;
-  trainingfacilities: string;
-  onsitegolfpro: string;
-  spikes: boolean;
-  guests: string;
-  access: string;
-  discounts: string;
-  rentals: boolean;
-  pullcarts: string;
-  walking: string;
-  restaurant: string;
-  bar: boolean;
-  hours: string;
-  food: boolean;
-  availableproducts: string;
-  homes: boolean;
-  latitude: string;
-  longitude: string;
-  description: string;
-  scorecard: string;
-  image: string;
-  region: string;
-}
+import { CourseData } from '../types';
 
 interface CourseFormProps {
   courseData: CourseData;
@@ -77,7 +14,7 @@ const CourseForm: React.FC<CourseFormProps> = ({ courseData, handleChange, handl
       <h2 className="text-3xl font-bold mb-6 text-center">Course Form</h2>
       <form onSubmit={handleSubmit} className="bg-white shadow-lg rounded-lg p-8 grid grid-cols-1 md:grid-cols-2 gap-6">
         {/* Text Inputs */}
-        {['name', 'url', 'coursetype', 'address', 'city', 'county', 'state', 'zip', 'country', 'phone', 'web', 'twitter', 'facebook', 'instagram', 'rangeballs', 'season', 'cost', 'proshop', 'tees', 'balls', 'instruction', 'locker', 'par', 'yards', 'rating', 'slope', 'architect', 'caddie', 'signaturehole', 'opened', 'greens', 'fairways', 'sandbunkers', 'holes', 'yardagemarkers', 'earliestcallteetime', 'trainingfacilities', 'onsitegolfpro', 'guests', 'access', 'discounts', 'pullcarts', 'walking', 'restaurant', 'hours', 'availableproducts', 'latitude', 'longitude', 'scorecard', 'image'].map((key) => (
+        {['name', 'url', 'coursetype', 'address', 'city', 'county', 'state', 'zip', 'country', 'phone', 'web', 'twitter', 'facebook', 'instagram', 'rangeballs', 'season', 'cost', 'proshop', 'tees', 'balls', 'instruction', 'locker', 'par', 'yards', 'rating', 'slope', 'architect', 'caddie', 'signaturehole', 'opened', 'greens', 'fairways', 'sandbunkers', 'holes', 'yardagemarkers', 'earliestcallteetime', 'trainingfacilities', 'onsitegolfpro', 'guests', 'access', 'discounts', 'latitude', 'longitude', 'scorecard', 'image'].map((key) => (
           <div key={key} className="flex flex-col">
             <label className="capitalize font-semibold mb-2 text-gray-700" htmlFor={key}>{key.replace(/([a-z])([A-Z])/g, '$1 $2')}</label>
             <input
@@ -110,7 +47,7 @@ const CourseForm: React.FC<CourseFormProps> = ({ courseData, handleChange, handl
         </div>
         
         {/* Checkbox Inputs */}
-        {['banquet', 'waterhazards', 'acceptteetimes', 'spikes', 'rentals', 'bar', 'food', 'homes'].map((key) => (
+        {['banquet', 'waterhazards', 'acceptteetimes', 'spikes', 'rentals', 'bar', 'food', 'homes', 'pullcarts', 'walking'].map((key) => (
           <div key={key} className="flex items-center space-x-2">
             <input
               className="border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-blue-500"

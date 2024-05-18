@@ -1,73 +1,10 @@
 import React, { useState } from 'react';
-import { Routes, Route, useNavigate } from 'react-router-dom';
+import { Routes, Route, Link, useNavigate } from 'react-router-dom';
 import CourseList from './CourseList';
 import CourseForm from './CourseForm';
 import EditCourse from './EditCourse';
 import axios from 'axios';
-
-interface CourseData {
-  name: string;
-  url: string;
-  coursetype: string;
-  address: string;
-  city: string;
-  county: string;
-  state: string;
-  zip: string;
-  country: string;
-  phone: string;
-  web: string;
-  twitter: string;
-  facebook: string;
-  instagram: string | null;
-  rangeballs: string;
-  tips: string;
-  season: string;
-  cost: string;
-  proshop: string;
-  tees: string;
-  balls: string;
-  instruction: string;
-  locker: string;
-  par: string;
-  yards: string;
-  rating: string;
-  slope: string;
-  architect: string;
-  caddie: string;
-  banquet: boolean;
-  signaturehole: string;
-  opened: string;
-  greens: string;
-  fairways: string;
-  waterhazards: boolean;
-  sandbunkers: string;
-  holes: string;
-  yardagemarkers: string;
-  acceptteetimes: boolean;
-  earliestcallteetime: string;
-  trainingfacilities: string;
-  onsitegolfpro: string;
-  spikes: boolean;
-  guests: string;
-  access: string;
-  discounts: string;
-  rentals: boolean;
-  pullcarts: string;
-  walking: string;
-  restaurant: string;
-  bar: boolean;
-  hours: string;
-  food: boolean;
-  availableproducts: string;
-  homes: boolean;
-  latitude: string;
-  longitude: string;
-  description: string;
-  scorecard: string;
-  image: string;
-  region: string;
-}
+import { CourseData } from '../types';
 
 const AdminPanel: React.FC = () => {
   const navigate = useNavigate();
@@ -119,8 +56,8 @@ const AdminPanel: React.FC = () => {
     access: '',
     discounts: '',
     rentals: false,
-    pullcarts: '',
-    walking: '',
+    pullcarts: false,
+    walking: false,
     restaurant: '',
     bar: false,
     hours: '',
@@ -171,22 +108,41 @@ const AdminPanel: React.FC = () => {
     }
   };
 
+  const handleLogout = () => {
+    localStorage.removeItem('accessToken');
+    navigate('/login');
+  };
+
   return (
-    <Routes>
-      <Route path="/" element={<CourseList />} />
-      <Route
-        path="add"
-        element={
-          <CourseForm
-            courseData={courseData}
-            handleChange={handleChange}
-            handleSubmit={handleSubmit}
-            message={message}
+    <div>
+      <nav className="bg-green-600 p-4 text-white">
+        <div className="container mx-auto flex justify-between items-center">
+          <Link to="/admin" className="text-lg font-bold hover:text-purple-300">Course Admin</Link>
+          <div className="space-x-4 flex items-center">
+            <Link to="/admin" className="hover:text-purple-300">Course List</Link>
+            <Link to="/admin/add" className="hover:text-purple-300">Add Course</Link>
+            <button onClick={handleLogout} className="bg-gray-700 text-white px-4 py-2 rounded-lg hover:bg-gray-800">Logout</button>
+          </div>
+        </div>
+      </nav>
+      <div className="container mx-auto p-4">
+        <Routes>
+          <Route path="/" element={<CourseList />} />
+          <Route
+            path="add"
+            element={
+              <CourseForm
+                courseData={courseData}
+                handleChange={handleChange}
+                handleSubmit={handleSubmit}
+                message={message}
+              />
+            }
           />
-        }
-      />
-      <Route path="edit/:id" element={<EditCourse />} />
-    </Routes>
+          <Route path="edit/:id" element={<EditCourse />} />
+        </Routes>
+      </div>
+    </div>
   );
 };
 
