@@ -7,8 +7,11 @@ import PrivateRoute from './components/PrivateRoute';
 import NavBar from './components/NavBar';
 
 const App: React.FC = () => {
+  const isAuthenticated = !!localStorage.getItem('accessToken'); // Check if the user is authenticated
+
   return (
     <Router>
+      {isAuthenticated && <NavBar />}
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route
@@ -20,15 +23,11 @@ const App: React.FC = () => {
           }
         />
         <Route
-          path="/*"
+          path="/"
           element={
-            <>
-              <NavBar />
-              <Routes>
-                <Route path="/" element={<Home />} />
-                {/* Add other routes here */}
-              </Routes>
-            </>
+            <PrivateRoute>
+              <Home />
+            </PrivateRoute>
           }
         />
       </Routes>

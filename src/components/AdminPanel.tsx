@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Routes, Route, Link, useNavigate } from 'react-router-dom';
+import { Routes, Route, useNavigate } from 'react-router-dom';
 import CourseList from './CourseList';
 import CourseForm from './CourseForm';
 import EditCourse from './EditCourse';
@@ -108,40 +108,23 @@ const AdminPanel: React.FC = () => {
     }
   };
 
-  const handleLogout = () => {
-    localStorage.removeItem('accessToken');
-    navigate('/login');
-  };
-
   return (
-    <div>
-      <nav className="bg-green-600 p-4 text-white">
-        <div className="container mx-auto flex justify-between items-center">
-          <Link to="/admin" className="text-lg font-bold hover:text-purple-300">Course Admin</Link>
-          <div className="space-x-4 flex items-center">
-            <Link to="/admin" className="hover:text-purple-300">Course List</Link>
-            <Link to="/admin/add" className="hover:text-purple-300">Add Course</Link>
-            <button onClick={handleLogout} className="bg-gray-700 text-white px-4 py-2 rounded-lg hover:bg-gray-800">Logout</button>
-          </div>
-        </div>
-      </nav>
-      <div className="container mx-auto p-4">
-        <Routes>
-          <Route path="/" element={<CourseList />} />
-          <Route
-            path="add"
-            element={
-              <CourseForm
-                courseData={courseData}
-                handleChange={handleChange}
-                handleSubmit={handleSubmit}
-                message={message}
-              />
-            }
-          />
-          <Route path="edit/:id" element={<EditCourse />} />
-        </Routes>
-      </div>
+    <div className="container mx-auto p-4">
+      <Routes>
+        <Route path="/" element={<CourseList />} />
+        <Route
+          path="add"
+          element={
+            <CourseForm
+              courseData={courseData}
+              handleChange={handleChange}
+              handleSubmit={handleSubmit}
+              message={message}
+            />
+          }
+        />
+        <Route path="edit/:id" element={<EditCourse />} />
+      </Routes>
     </div>
   );
 };

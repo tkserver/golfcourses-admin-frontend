@@ -1,15 +1,44 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 
 const NavBar: React.FC = () => {
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    localStorage.removeItem('accessToken');
+    navigate('/login');
+  };
+
   return (
-    <nav className="bg-blue-600 p-4 text-white">
+    <nav className="bg-green-600 p-4 text-white">
       <div className="container mx-auto flex justify-between items-center">
-        <div className="text-xl font-bold">Admin Panel</div>
-        <div className="space-x-4">
-          <Link to="/" className="hover:underline">Home</Link>
-          <Link to="/admin" className="hover:underline">Courses</Link>
-          <Link to="/admin/add" className="hover:underline">Add Course</Link>
+        <NavLink to="/admin" className="text-lg font-bold hover:text-purple-300">
+          Course Admin
+        </NavLink>
+        <div className="space-x-4 flex items-center">
+          <NavLink
+            to="/admin"
+            end
+            className={({ isActive }) =>
+              `hover:text-purple-300 ${isActive ? 'font-bold underline' : ''}`
+            }
+          >
+            Course List
+          </NavLink>
+          <NavLink
+            to="/admin/add"
+            className={({ isActive }) =>
+              `hover:text-purple-300 ${isActive ? 'font-bold underline' : ''}`
+            }
+          >
+            Add Course
+          </NavLink>
+          <button
+            onClick={handleLogout}
+            className="bg-gray-700 text-white px-4 py-2 rounded-lg hover:bg-gray-800"
+          >
+            Logout
+          </button>
         </div>
       </div>
     </nav>
