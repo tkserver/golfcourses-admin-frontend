@@ -10,7 +10,7 @@ const App: React.FC = () => {
   const isAuthenticated = !!localStorage.getItem('accessToken'); // Check if the user is authenticated
 
   return (
-    <Router>
+    <Router basename="/admin">
       {isAuthenticated && <NavBar />}
       <Routes>
         <Route path="/login" element={<Login />} />

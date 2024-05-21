@@ -3,7 +3,7 @@ import { Routes, Route, useNavigate } from 'react-router-dom';
 import CourseList from './CourseList';
 import CourseForm from './CourseForm';
 import EditCourse from './EditCourse';
-import axios from 'axios';
+import apiClient from '../axiosConfig';
 import { CourseData } from '../types';
 
 const AdminPanel: React.FC = () => {
@@ -92,7 +92,7 @@ const AdminPanel: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      await axios.post('http://localhost:3001/courses', courseData, {
+      await apiClient.post('/courses', courseData, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
         },

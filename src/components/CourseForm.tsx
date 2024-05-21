@@ -11,7 +11,7 @@ interface CourseFormProps {
 const CourseForm: React.FC<CourseFormProps> = ({ courseData, handleChange, handleSubmit, message }) => {
   return (
     <div className="container mx-auto p-8">
-      <h2 className="text-3xl font-bold mb-6 text-center">Course Form</h2>
+      {/* <h2 className="text-3xl font-bold mb-6 text-center">Course Form</h2> */}
       <form onSubmit={handleSubmit} className="bg-white shadow-lg rounded-lg p-8 grid grid-cols-1 md:grid-cols-2 gap-6">
         {/* Text Inputs */}
         {['name', 'url', 'coursetype', 'address', 'city', 'county', 'state', 'zip', 'country', 'phone', 'web', 'twitter', 'facebook', 'instagram', 'rangeballs', 'season', 'cost', 'proshop', 'tees', 'balls', 'instruction', 'locker', 'par', 'yards', 'rating', 'slope', 'architect', 'caddie', 'signaturehole', 'opened', 'greens', 'fairways', 'sandbunkers', 'holes', 'yardagemarkers', 'earliestcallteetime', 'trainingfacilities', 'onsitegolfpro', 'guests', 'access', 'discounts', 'latitude', 'longitude', 'scorecard', 'image'].map((key) => (

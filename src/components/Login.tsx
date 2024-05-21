@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import axios, { AxiosError } from 'axios';
 import { useNavigate } from 'react-router-dom';
+import apiClient from '../axiosConfig';
+import { AxiosError } from 'axios';
 
 const Login: React.FC = () => {
   const [username, setUsername] = useState('');
@@ -13,7 +14,7 @@ const Login: React.FC = () => {
     e.preventDefault();
     setMessage(''); // Clear any previous messages
     try {
-      const response = await axios.post('http://localhost:3001/auth/login', { username, password });
+      const response = await apiClient.post('/auth/login', { username, password });
       localStorage.setItem('accessToken', response.data.accessToken);
       navigate('/admin');
     } catch (error) {

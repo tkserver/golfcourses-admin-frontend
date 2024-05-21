@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import apiClient from '../axiosConfig';
 import { CourseData } from '../types';
 import CourseForm from './CourseForm';
 
@@ -13,7 +13,7 @@ const EditCourse: React.FC = () => {
   useEffect(() => {
     const fetchCourseData = async () => {
       try {
-        const response = await axios.get(`http://localhost:3001/courses/${id}`, {
+        const response = await apiClient.get(`/courses/${id}`, {
           headers: {
             Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
           },
@@ -74,7 +74,7 @@ const EditCourse: React.FC = () => {
     };
 
     try {
-      await axios.put(`http://localhost:3001/courses/${id}`, updatedCourseData, {
+      await apiClient.put(`/courses/${id}`, updatedCourseData, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
         },
